@@ -1,0 +1,5 @@
+//android.applicationVariants.all { variant ->
+//    variant.outputs.each { output ->
+//        output.outputFile = new File(rootProject.projectDir, apkPath + output.outputFile.name)
+//    }
+//}

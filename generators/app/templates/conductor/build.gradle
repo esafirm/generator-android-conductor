@@ -1,0 +1,48 @@
+buildscript {
+    ext.kotlin_version = '1.1.4-2'
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.0-beta3'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+ext {
+    androidTestRunner = "android.support.test.runner.AndroidJUnitRunner"
+
+    kotlin = [
+            stdlib: "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version",
+            junit : "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+    ]
+
+    test = [
+            junit     : 'junit:junit:4.12',
+            kotlinTest: 'io.kotlintest:kotlintest:2.0.4'
+    ]
+
+    sdk = [
+            compileSdk: 26,
+            buildTool : '26.0.1',
+            minSdk    : 16,
+            targetSdk : 22
+    ]
+
+    dependencies = [
+            dagger: '2.9'
+    ]
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

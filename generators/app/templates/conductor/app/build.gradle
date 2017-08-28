@@ -1,0 +1,95 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+apply from: '../config/quality/quality.gradle'
+apply from: 'versioning.gradle'
+apply from: 'output.gradle'
+
+android {
+    final sdk = rootProject.ext.sdk
+
+    compileSdkVersion sdk.compileSdk
+    buildToolsVersion sdk.buildTool
+
+    defaultConfig {
+        applicationId "<%= appPackage %>"
+
+        minSdkVersion sdk.minSdk
+        targetSdkVersion sdk.targetSdk
+
+        multiDexEnabled true
+
+        versionCode buildVersionCode()
+        versionName appVersion
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    testOptions.unitTests.all {
+        testLogging {
+            events "passed", "skipped", "failed", "standardOut", "standardError"
+            outputs.upToDateWhen { false }
+            showStandardStreams true
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/MANIFEST.MF'
+    }
+}
+
+dependencies {
+    /* Multidex */
+    implementation 'com.android.support:multidex:1.0.2'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.0.1'
+
+    final conductorVersion = '2.1.4'
+    implementation "com.bluelinelabs:conductor:$conductorVersion"
+
+    final conductorExtraVersion = '1.3.2'
+    implementation "com.github.esafirm.conductor-extra:conductor-extra:$conductorExtraVersion"
+    implementation "com.github.esafirm.conductor-extra:conductor-extra-butterknife:$conductorExtraVersion"
+
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.3'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    /* Dagger 2 */
+    final daggerVersion = rootProject.ext.dependencies.dagger
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    /* Butterknife */
+    kapt 'com.jakewharton:butterknife-compiler:8.6.0'
+
+    /* Network */
+    final okHttpVersion = '3.8.1'
+    implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+
+    final retrofitVersion = '2.3.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+    implementation 'com.google.code.gson:gson:2.8.1'
+
+    /* --------------------------------------------------- */
+    /* > Test */
+    /* --------------------------------------------------- */
+
+    /* Unit Test */
+    testImplementation rootProject.ext.test.junit
+    testImplementation rootProject.ext.test.kotlinTest
+    testImplementation rootProject.ext.kotlin.stdlib
+    testImplementation rootProject.ext.kotlin.junit
+}
+
+
