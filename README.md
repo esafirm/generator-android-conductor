@@ -8,6 +8,14 @@ This generator will use the code from [here](https://github.com/esafirm/android-
 
 ### Getting Started
 
+```
+1. npm install -g yo 
+2. npm install -g generator-kotlin-android-conductor
+3. yo kotlin-android-conductor
+4. Import to Android Studio? Running gradle from CLI?
+5. Profit 💰💰💰
+```
+
 ### Maintained By
 
 Esa Firman - [LinkedIn](https://www.linkedin.com/in/esa-firman-01b8096b/)  
