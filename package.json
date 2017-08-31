@@ -8,9 +8,14 @@
     "email": "esafirm21@gmail.com",
     "url": "https://github.com/esafirm"
   },
-  "files": ["generators"],
+  "files": [
+    "generators"
+  ],
   "main": "generators/index.js",
-  "keywords": ["Android", "yeoman-generator"],
+  "keywords": [
+    "Android",
+    "yeoman-generator"
+  ],
   "dependencies": {
     "chalk": "^1.0.0",
     "generator-git-init": "^1.1.3",
