@@ -57,7 +57,7 @@
       "mocha": true
     }
   },
-  "repository": "ravidsrk/generator-kotlin-android",
+  "repository": "esafirm/generator-android-conductor",
   "scripts": {
     "prepublish": "gulp prepublish",
     "test": "gulp"
