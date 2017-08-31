@@ -4,34 +4,33 @@ const path = require('path');
 const rimraf = require('rimraf');
 const replace = require('replace');
 const ncp = require('ncp').ncp;
-const nodegit = require('nodegit')
-const clone = nodegit.Clone
+const nodegit = require('nodegit');
+const clone = nodegit.Clone;
 
-const tempDir = path.join(__dirname, './tmp')
+const tempDir = path.join(__dirname, './tmp');
 
-console.log('Running… ')
+console.log('Running… ');
 
-rimraf.sync(tempDir)
-
+rimraf.sync(tempDir);
 
 clone('https://github.com/esafirm/android-conductor-boilerplate.git', tempDir)
-  .then(function (repo) {
-    return clearTemplate().then(() => checkOutAndCopy(repo))
+  .then(function () {
+    return clearTemplate().then(() => checkOutAndCopy());
   })
   .catch(function (err) {
     console.log('cloning error', err);
   });
 
 function clearTemplate() {
-  return new Promise((resolve, reject) => {
-    rimraf.sync(path.join(__dirname, '/templates/template-kotlin/*'))
-    rimraf.sync(path.join(__dirname, '/templates/template-kotlin/.*'))
-    resolve()
-  })
+  return new Promise(resolve => {
+    rimraf.sync(path.join(__dirname, '/templates/template-kotlin/*'));
+    rimraf.sync(path.join(__dirname, '/templates/template-kotlin/.*'));
+    resolve();
+  });
 }
 
-function checkOutAndCopy(repo, name) {
-  console.log('Setting up code base…')
+function checkOutAndCopy() {
+  console.log('Setting up code base…');
 
   replace({
     regex: 'nolambda.androidstarter',
@@ -46,7 +45,7 @@ function checkOutAndCopy(repo, name) {
   console.log('Copying files to ./templates/template-kotlin');
 
   ncp.limit = 1600;
-  ncp(tempDir, path.join(__dirname, 'templates/template-kotlin'), (err) => {
+  ncp(tempDir, path.join(__dirname, 'templates/template-kotlin'), err => {
     if (err) {
       return console.error(err);
     }

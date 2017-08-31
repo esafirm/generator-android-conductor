@@ -53,13 +53,13 @@ module.exports = Generator.extend({
 
     mkdirp('app');
     mkdirp('app/src/main/assets');
-    mkdirp('app/src/main/java/' + packageDir);
-    mkdirp('app/src/androidTest/java/' + packageDir);
-    mkdirp('app/src/commonTest/java/' + packageDir);
+    mkdirp('app/src/main/kotlin/' + packageDir);
+    mkdirp('app/src/androidTest/kotlin/' + packageDir);
+    mkdirp('app/src/commonTest/kotlin/' + packageDir);
     mkdirp('app/src/debug');
     mkdirp('app/src/release');
     mkdirp('app/src/test/resources');
-    mkdirp('app/src/test/java/' + packageDir);
+    mkdirp('app/src/test/kotlin/' + packageDir);
 
     const appPath = this.sourceRoot() + '/' + appFolder + '/';
 
@@ -83,10 +83,10 @@ module.exports = Generator.extend({
 
     /* Main */
     this.fs.copyTpl(appPath + 'app/src/main/AndroidManifest.xml', 'app/src/main/AndroidManifest.xml', this.props);
-    this.fs.copyTpl(appPath + `app/src/main/kotlin/${currentPath}`, 'app/src/main/java/' + packageDir, this.props);
+    this.fs.copyTpl(appPath + `app/src/main/kotlin/${currentPath}`, 'app/src/main/koltin/' + packageDir, this.props);
     this.fs.copyTpl(appPath + 'app/src/main/res/layout', 'app/src/main/res/layout', this.props);
 
     /* Test */
-    this.fs.copyTpl(appPath + `app/src/test/java/${currentPath}`, 'app/src/test/java/' + packageDir, this.props);
+    this.fs.copyTpl(appPath + `app/src/test/kotlin/${currentPath}`, 'app/src/test/kotlin/' + packageDir, this.props);
   }
 });
