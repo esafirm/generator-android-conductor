@@ -33,7 +33,18 @@ describe('generator-android-mvp-starter:app', function () {
     assert.file([
       'app/.gitignore',
       'app/build.gradle',
-      'app/proguard-rules.pro'
+      'app/proguard-rules.pro',
+      'app/output.gradle',
+      'app/versioning.gradle'
+    ]);
+  });
+
+  it('copies config files', function () {
+    assert.file([
+      'config/quality/checkstyle/checkstyle-config.xml',
+      'config/quality/findbugs/android-exclude-filter.xml',
+      'config/quality/pmd/pmd-ruleset.xml',
+      'config/quality/quality.gradle'
     ]);
   });
 
