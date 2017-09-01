@@ -6,8 +6,10 @@ const replace = require('replace');
 const ncp = require('ncp').ncp;
 const nodegit = require('nodegit');
 const clone = nodegit.Clone;
+const mv = require('mv');
 
 const tempDir = path.join(__dirname, './tmp');
+const appPath = 'conductor';
 
 console.log('Running… ');
 
@@ -23,8 +25,8 @@ clone('https://github.com/esafirm/android-conductor-boilerplate.git', tempDir)
 
 function clearTemplate() {
   return new Promise(resolve => {
-    rimraf.sync(path.join(__dirname, '/templates/template-kotlin/*'));
-    rimraf.sync(path.join(__dirname, '/templates/template-kotlin/.*'));
+    rimraf.sync(path.join(__dirname, `/templates/${appPath}/*`));
+    rimraf.sync(path.join(__dirname, `/templates/${appPath}/.*`));
     resolve();
   });
 }
@@ -40,16 +42,30 @@ function checkOutAndCopy() {
     silent: true
   });
 
+  maskDotFile(tempDir + '/.gitignore');
+  maskDotFile(tempDir + '/app/.gitignore');
+
   rimraf.sync(path.join(__dirname, '/tmp/.git'));
 
-  console.log('Copying files to ./templates/template-kotlin');
+  console.log(`Copying files to ./templates/${appPath}`);
 
   ncp.limit = 1600;
-  ncp(tempDir, path.join(__dirname, 'templates/template-kotlin'), err => {
+  ncp(tempDir, path.join(__dirname, `templates/${appPath}`), err => {
     if (err) {
       return console.error(err);
     }
     console.log('Copying complete!');
     rimraf.sync(tempDir);
+  });
+}
+
+function maskDotFile(filePath) {
+  const masked = filePath.replace('.', '');
+  mv(filePath, masked, err => {
+    if (err) {
+      console.log('Mask dot file error:', err);
+    } else {
+      console.log('Successfully masked to ' + masked);
+    }
   });
 }

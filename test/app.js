@@ -3,7 +3,7 @@ var path = require('path');
 var assert = require('yeoman-assert');
 var helpers = require('yeoman-test');
 
-describe('generator-android-mvp-starter:app', function () {
+describe('generator-android-kotlin-conductor', function () {
   this.timeout(15000);
 
   before(function () {

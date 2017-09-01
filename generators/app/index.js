@@ -74,19 +74,30 @@ module.exports = Generator.extend({
       });
     };
 
-    this.fs.copy(appPath + '.gitignore', '.gitignore');
+    const copyDotFile = filePath => {
+      const index = filePath.lastIndexOf('/') + 1;
+      const dest = filePath.substring(0, index) + `.${filePath.substring(filePath.lastIndexOf('/') + 1)}`;
+
+      console.log('dest', dest);
+      console.log('orgiin', (appPath + filePath));
+
+      this.fs.copy(appPath + filePath, dest);
+    };
+
     this.fs.copy(appPath + 'build.gradle', 'build.gradle');
     this.fs.copy(appPath + 'gradle.properties', 'gradle.properties');
     this.fs.copy(appPath + 'gradlew', 'gradlew');
     this.fs.copy(appPath + 'gradlew.bat', 'gradlew.bat');
     this.fs.copy(appPath + 'settings.gradle', 'settings.gradle');
 
-    copyToSameLocation('app/.gitignore');
     copyToSameLocation('app/proguard-rules.pro');
     copyToSameLocation('app/output.gradle');
     copyToSameLocation('app/versioning.gradle');
 
     copyAllToSameLocation('config');
+
+    copyDotFile('gitignore');
+    copyDotFile('app/gitignore');
 
     this.fs.copy(appPath + 'gradle', 'gradle');
     this.fs.copy(appPath + 'app/src/main/res', 'app/src/main/res');
