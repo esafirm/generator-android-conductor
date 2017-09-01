@@ -1,6 +1,6 @@
 ## Android Conductor Boilerplate Generator
 
-An attempt to remove this situation:
+An attempt to remove this kind of situations:
 
 > Time to create a new project! What should i add now? 
 
