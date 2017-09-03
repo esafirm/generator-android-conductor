@@ -6,6 +6,13 @@ An attempt to remove this kind of situations:
 
 This generator will use the code from [here](https://github.com/esafirm/android-conductor-boilerplate)
 
+### Prerequisites
+
+You have to install these first: 
+
+1. [NodeJs](https://nodejs.org/en/)
+2. [Yeoman](http://yeoman.io/)
+
 ### Getting Started
 
 ```
