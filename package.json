@@ -1,6 +1,6 @@
 {
   "name": "generator-kotlin-android-conductor",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Android project generator with Conductor as it view layer",
   "homepage": "https://github.com/esafirm/generator-android-conductor",
   "author": {
