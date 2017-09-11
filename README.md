@@ -1,4 +1,6 @@
-## Android Conductor Boilerplate Generator
+[![npm version](https://badge.fury.io/js/generator-kotlin-android-conductor.svg)](https://badge.fury.io/js/generator-kotlin-android-conductor)
+
+## Android Conductor Boilerplate Generator 
 
 An attempt to remove this kind of situations:
 
