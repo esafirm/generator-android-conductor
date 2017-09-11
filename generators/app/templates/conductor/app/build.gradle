@@ -87,6 +87,9 @@ dependencies {
 
     implementation 'com.google.code.gson:gson:2.8.1'
 
+    /* Logging */
+    compile 'com.jakewharton.timber:timber:4.5.1'
+
     /* --------------------------------------------------- */
     /* > Test */
     /* --------------------------------------------------- */
