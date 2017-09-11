@@ -41,10 +41,9 @@ module.exports = Generator.extend({
 
     return this.prompt(prompts).then(props => {
       this.props.appPackage = props.package;
-      this.appName = props.name;
-      this.appPackage = props.package;
-      this.androidTargetSdkVersion = props.targetSdk;
-      this.androidMinSdkVersion = props.minSdk;
+      this.props.appName = props.name;
+      this.props.androidTargetSdkVersion = props.targetSdk;
+      this.props.androidMinSdkVersion = props.minSdk;
     });
   },
 
@@ -64,6 +63,9 @@ module.exports = Generator.extend({
 
     const appPath = this.sourceRoot() + '/' + appFolder + '/';
     const copyToSameLocation = filePath => this.fs.copy(appPath + filePath, filePath);
+    const copyTemplateToSameLocation = (filePath, props) => {
+      this.fs.copyTpl(appPath + filePath, filePath, props);
+    };
 
     const copyAllToSameLocation = filePath => {
       ncp.limit = 1600;
@@ -84,7 +86,6 @@ module.exports = Generator.extend({
       this.fs.copy(appPath + filePath, dest);
     };
 
-    this.fs.copy(appPath + 'build.gradle', 'build.gradle');
     this.fs.copy(appPath + 'gradle.properties', 'gradle.properties');
     this.fs.copy(appPath + 'gradlew', 'gradlew');
     this.fs.copy(appPath + 'gradlew.bat', 'gradlew.bat');
@@ -106,12 +107,14 @@ module.exports = Generator.extend({
     const currentPath = 'nolambda/androidstarter';
 
     /* Top Level */
-    this.fs.copyTpl(appPath + 'app/build.gradle', 'app/build.gradle', this.props);
+    copyAllToSameLocation('app/build.gradle', this.props);
+    copyTemplateToSameLocation('build.gradle', this.props);
 
     /* Main */
-    this.fs.copyTpl(appPath + 'app/src/main/AndroidManifest.xml', 'app/src/main/AndroidManifest.xml', this.props);
+    copyTemplateToSameLocation('app/src/main/res/values/strings.xml', this.props);
+    copyTemplateToSameLocation('app/src/main/AndroidManifest.xml', this.props);
+    copyTemplateToSameLocation('app/src/main/res/layout', this.props);
     this.fs.copyTpl(appPath + `app/src/main/kotlin/${currentPath}`, 'app/src/main/kotlin/' + packageDir, this.props);
-    this.fs.copyTpl(appPath + 'app/src/main/res/layout', 'app/src/main/res/layout', this.props);
 
     /* Test */
     this.fs.copyTpl(appPath + `app/src/test/kotlin/${currentPath}`, 'app/src/test/kotlin/' + packageDir, this.props);

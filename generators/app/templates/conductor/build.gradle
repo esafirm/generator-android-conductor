@@ -26,8 +26,8 @@ ext {
     sdk = [
             compileSdk: 26,
             buildTool : '26.0.1',
-            minSdk    : 16,
-            targetSdk : 22
+            minSdk    : <%= androidMinSdkVersion %>,
+            targetSdk : <%= androidTargetSdkVersion %>
     ]
 
     dependencies = [

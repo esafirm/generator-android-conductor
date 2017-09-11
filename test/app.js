@@ -54,4 +54,9 @@ describe('generator-android-kotlin-conductor', function () {
       'gradle/wrapper/gradle-wrapper.properties'
     ]);
   });
+
+  it('placeholder should be replaced', function () {
+    assert.noFileContent('build.gradle', 'androidTargetSdkVersion');
+    assert.noFileContent('build.gradle', 'androidMinSdkVersion');
+  });
 });
