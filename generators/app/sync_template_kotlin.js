@@ -8,6 +8,8 @@ const nodegit = require('nodegit');
 const clone = nodegit.Clone;
 const mv = require('mv');
 
+const {replaceConfig, createReplacement} = require('./config/replace');
+
 const tempDir = path.join(__dirname, './tmp');
 const appPath = 'conductor';
 
@@ -40,6 +42,17 @@ function checkOutAndCopy() {
     paths: [tempDir],
     recursive: true,
     silent: true
+  });
+
+  replaceConfig.forEach(config => {
+    console.log('Replaceing ' + config.name);
+    replace({
+      regex: config.replace,
+      replacement: createReplacement(config),
+      paths: [tempDir],
+      recursive: true,
+      silent: true
+    });
   });
 
   maskDotFile(tempDir + '/.gitignore');
