@@ -107,8 +107,8 @@ module.exports = Generator.extend({
     const currentPath = 'nolambda/androidstarter';
 
     /* Top Level */
-    copyAllToSameLocation('app/build.gradle', this.props);
     copyTemplateToSameLocation('build.gradle', this.props);
+    copyTemplateToSameLocation('app/build.gradle', this.props);
 
     /* Main */
     copyTemplateToSameLocation('app/src/main/res/values/strings.xml', this.props);

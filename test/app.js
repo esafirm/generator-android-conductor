@@ -58,5 +58,7 @@ describe('generator-android-kotlin-conductor', function () {
   it('placeholder should be replaced', function () {
     assert.noFileContent('build.gradle', 'androidTargetSdkVersion');
     assert.noFileContent('build.gradle', 'androidMinSdkVersion');
+    assert.noFileContent('app/build.gradle', 'appPackage');
+    assert.noFileContent('app/src/main/AndroidManifest.xml', 'appPackage');
   });
 });
