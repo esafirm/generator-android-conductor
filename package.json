@@ -60,7 +60,8 @@
   "repository": "esafirm/generator-android-conductor",
   "scripts": {
     "prepublish": "gulp prepublish",
-    "test": "gulp"
+    "test": "gulp",
+    "sync": "node generators/app/sync_template_kotlin.js"
   },
   "license": "Apache-2.0"
 }
