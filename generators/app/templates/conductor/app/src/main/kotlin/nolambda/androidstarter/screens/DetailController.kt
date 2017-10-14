@@ -1,5 +1,6 @@
 package <%= appPackage %>.screens
 
+import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import butterknife.BindView
@@ -20,7 +21,7 @@ class DetailController : AbsController() {
 
     override fun getLayoutResId(): Int = R.layout.controller_detail
 
-    override fun onViewBound(bindingResult: View) {
+    override fun onViewBound(bindingResult: View, savedState: Bundle?) {
         txtYeah.setOnClickListener {
             navigator.goToApiExample()
         }

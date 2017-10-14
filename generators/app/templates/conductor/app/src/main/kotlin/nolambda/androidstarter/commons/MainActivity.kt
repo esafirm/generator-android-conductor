@@ -17,6 +17,11 @@ import <%= appPackage %>.navigator.AppNavigator
 
 class MainActivity : AppCompatActivity(), HasComponent<ActivityComponent> {
 
+    companion object {
+        const val LAYOUT_ID_MAIN = 0x1
+        const val LAYOUT_ID_OVERLAY = 0x2
+    }
+
     private lateinit var router: Router
     private lateinit var overlayRouter: Router
 
@@ -28,13 +33,8 @@ class MainActivity : AppCompatActivity(), HasComponent<ActivityComponent> {
                 ViewGroup.LayoutParams.MATCH_PARENT
         )
 
-        val main = ChangeHandlerFrameLayout(this).apply {
-            layoutParams = params
-        }
-
-        val overlay = ChangeHandlerFrameLayout(this).apply {
-            layoutParams = params
-        }
+        val main = generateLayout(LAYOUT_ID_MAIN, params)
+        val overlay = generateLayout(LAYOUT_ID_OVERLAY, params)
 
         val lifecycleHandler = LifecycleHandler.install(this)
         router = lifecycleHandler.getRouter(main, savedInstanceState)
@@ -48,6 +48,13 @@ class MainActivity : AppCompatActivity(), HasComponent<ActivityComponent> {
 
         activityComponent.appNavigator().setupContent()
     }
+
+    private fun generateLayout(id: Int, params: FrameLayout.LayoutParams) =
+            ChangeHandlerFrameLayout(this).apply {
+                setId(id)
+                layoutParams = params
+            }
+
 
     override fun onBackPressed() {
         if (!overlayRouter.handleBack() && !router.handleBack()) {

@@ -1,5 +1,6 @@
 package <%= appPackage %>.screens
 
+import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import butterknife.BindView
@@ -21,7 +22,7 @@ class ApiExampleController : AbsController() {
 
     override fun getLayoutResId(): Int = R.layout.controller_main
 
-    override fun onViewBound(bindingResult: View) {
+    override fun onViewBound(bindingResult: View, savedState: Bundle?) {
         txtTitle.setOnClickListener {
             apiService.getUserAgent()
                     .observeOn(AndroidSchedulers.mainThread())
