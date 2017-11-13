@@ -3,9 +3,11 @@ package <%= appPackage %>.di.components
 import dagger.Subcomponent
 import <%= appPackage %>.di.modules.ActivityModule
 import <%= appPackage %>.di.modules.NavigatorModule
+import <%= appPackage %>.di.scopes.ActivityScope
 import <%= appPackage %>.navigator.AppNavigator
 import <%= appPackage %>.navigator.IntentNavigator
 
+@ActivityScope
 @Subcomponent(modules = arrayOf(
         ActivityModule::class,
         NavigatorModule::class
