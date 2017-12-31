@@ -1,0 +1,3 @@
+[submodule "android-conductor-boilerplate"]
+	path = android-conductor-boilerplate
+	url = git@github.com:esafirm/android-conductor-boilerplate.git
