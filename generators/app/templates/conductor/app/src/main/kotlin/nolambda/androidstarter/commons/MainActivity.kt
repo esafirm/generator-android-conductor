@@ -36,15 +36,18 @@ class MainActivity : AppCompatActivity(), HasComponent<ActivityComponent> {
         val main = generateLayout(LAYOUT_ID_MAIN, params)
         val overlay = generateLayout(LAYOUT_ID_OVERLAY, params)
 
-        val lifecycleHandler = LifecycleHandler.install(this)
-        router = lifecycleHandler.getRouter(main, savedInstanceState)
-        overlayRouter = lifecycleHandler.getRouter(overlay, savedInstanceState)
-
         setContentView(FrameLayout(this).apply {
             layoutParams = params
             addView(main)
             addView(overlay)
         })
+
+        val lifecycleHandler = LifecycleHandler.install(this)
+        router = lifecycleHandler.getRouter(main, savedInstanceState)
+        overlayRouter = lifecycleHandler.getRouter(overlay, savedInstanceState)
+
+        router.rebindIfNeeded()
+        overlayRouter.rebindIfNeeded()
 
         activityComponent.appNavigator().setupContent()
     }
@@ -66,9 +69,7 @@ class MainActivity : AppCompatActivity(), HasComponent<ActivityComponent> {
     /* > Component */
     /* --------------------------------------------------- */
 
-    override fun getComponent(): ActivityComponent {
-        return activityComponent
-    }
+    override fun getComponent(): ActivityComponent = activityComponent
 
     private val activityComponent: ActivityComponent by lazy {
         MainApp.appComponent!!
