@@ -1,10 +1,15 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 apply from: '../config/quality/quality.gradle'
 apply from: 'versioning.gradle'
 apply from: 'output.gradle'
+
+androidExtensions {
+    experimental true
+}
 
 android {
     final sdk = rootProject.ext.sdk
@@ -52,20 +57,24 @@ android {
 
 dependencies {
     /* Multidex */
-    implementation 'com.android.support:multidex:1.0.2'
+    implementation 'com.android.support:multidex:1.0.3'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
 
     final conductorVersion = '2.1.4'
     implementation "com.bluelinelabs:conductor:$conductorVersion"
 
-    final conductorExtraVersion = '2.2.1'
+    final conductorExtraVersion = '3.2.0'
     implementation "com.github.esafirm.conductor-extra:conductor-extra:$conductorExtraVersion"
-    implementation "com.github.esafirm.conductor-extra:conductor-extra-butterknife:$conductorExtraVersion"
+    implementation "com.github.esafirm.conductor-extra:conductor-extra-screen:$conductorExtraVersion"
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.5'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.8'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
+    /* Arch */
+    implementation "android.arch.core:runtime:1.1.1"
+    implementation "android.arch.core:common:1.1.1"
 
     /* Dagger 2 */
     final daggerVersion = rootProject.ext.dependencies.dagger
@@ -88,7 +97,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.1'
 
     /* Logging */
-    compile 'com.jakewharton.timber:timber:4.5.1'
+    implementation 'com.jakewharton.timber:timber:4.5.1'
 
     /* --------------------------------------------------- */
     /* > Test */

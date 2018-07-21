@@ -8,10 +8,7 @@ import <%= appPackage %>.navigator.AppNavigator
 import <%= appPackage %>.navigator.IntentNavigator
 
 @ActivityScope
-@Subcomponent(modules = arrayOf(
-        ActivityModule::class,
-        NavigatorModule::class
-))
+@Subcomponent(modules = [ActivityModule::class, NavigatorModule::class])
 interface ActivityComponent {
 
     fun appNavigator(): AppNavigator

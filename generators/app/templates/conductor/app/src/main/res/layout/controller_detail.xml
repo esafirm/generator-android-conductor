@@ -2,14 +2,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              android:gravity="center"
               android:orientation="vertical">
 
     <TextView
         android:id="@+id/main_txt_yeah"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="28sp"
-        android:text="Yeah!"/>
+        android:text="Yeah!"
+        android:textSize="28sp"/>
+
+    <ProgressBar
+        android:id="@+id/main_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/main_btn_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset Counter"/>
+
+    <Button
+        android:id="@+id/main_btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Async"/>
+
+    <Button
+        android:id="@+id/main_btn_add_async"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Async"/>
 
 </LinearLayout>

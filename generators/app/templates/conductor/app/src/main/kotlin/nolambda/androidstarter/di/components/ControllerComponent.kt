@@ -2,9 +2,9 @@ package <%= appPackage %>.di.components
 
 import dagger.Subcomponent
 import <%= appPackage %>.di.modules.ControllerModule
-import <%= appPackage %>.screens.ApiExampleController
-import <%= appPackage %>.screens.DetailController
-import <%= appPackage %>.screens.MainController
+import <%= appPackage %>.screens.ApiExampleStatefulScreen
+import <%= appPackage %>.screens.DetailScreen
+import <%= appPackage %>.screens.MainScreen
 
 @Subcomponent(modules = arrayOf(ControllerModule::class))
 interface ControllerComponent {
@@ -13,9 +13,9 @@ interface ControllerComponent {
     /* > Injects */
     /* --------------------------------------------------- */
 
-    fun inject(mainController: MainController)
-    fun inject(detailController: DetailController)
-    fun inject(apiExampleController: ApiExampleController)
+    fun inject(mainController: MainScreen)
+    fun inject(detailController: DetailScreen)
+    fun inject(apiExampleController: ApiExampleStatefulScreen)
 
     /* --------------------------------------------------- */
     /* > Builders */
