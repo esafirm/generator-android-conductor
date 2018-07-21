@@ -64,7 +64,8 @@
     "prepublish": "gulp prepublish",
     "test": "gulp",
     "sync": "node generators/app/sync_template_kotlin.js",
-    "check": "gulp -v"
+    "check": "gulp -v && gulp --tasks",
+    "fix": "eslint . --fix"
   },
   "license": "Apache-2.0"
 }
