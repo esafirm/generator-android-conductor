@@ -6,11 +6,11 @@ const yosay = require('yosay');
 const chalk = require('chalk');
 const ncp = require('ncp').ncp;
 
-module.exports = Generator.extend({
-  initializing: function () {
+module.exports = class extends Generator {
+  initializing() {
     this.props = {};
-  },
-  prompting: function () {
+  }
+  prompting() {
     this.log(yosay(
       'Welcome to ' + chalk.red('Kotlin Android Starter') + ' generator!'
     ));
@@ -45,9 +45,8 @@ module.exports = Generator.extend({
       this.props.androidTargetSdkVersion = props.targetSdk;
       this.props.androidMinSdkVersion = props.minSdk;
     });
-  },
-
-  writing: function () {
+  }
+  writing() {
     const packageDir = this.props.appPackage.replace(/\./g, '/');
     const appFolder = 'conductor';
 
@@ -119,4 +118,5 @@ module.exports = Generator.extend({
     /* Test */
     this.fs.copyTpl(appPath + `app/src/test/kotlin/${currentPath}`, 'app/src/test/kotlin/' + packageDir, this.props);
   }
-});
+};
+
