@@ -63,7 +63,8 @@
   "scripts": {
     "prepublish": "gulp prepublish",
     "test": "gulp",
-    "sync": "node generators/app/sync_template_kotlin.js"
+    "sync": "node generators/app/sync_template_kotlin.js",
+    "check": "gulp -v"
   },
   "license": "Apache-2.0"
 }
