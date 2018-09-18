@@ -21,6 +21,7 @@
     "glob": "^7.0.5",
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
+    "simple-git": "^1.100.0",
     "yeoman-generator": "^3.0.0",
     "yosay": "^2.0.1"
   },
@@ -44,7 +45,6 @@
     "gulp-nsp": "^2.1.0",
     "gulp-plumber": "^1.2.0",
     "mv": "^2.1.1",
-    "nodegit": "^0.22.2",
     "path": "^0.12.7",
     "renamer": "^0.6.1",
     "replace": "^0.3.0",
