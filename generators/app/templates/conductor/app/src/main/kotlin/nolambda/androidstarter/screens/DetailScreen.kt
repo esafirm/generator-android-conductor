@@ -16,7 +16,7 @@ class DetailPresenter @Inject constructor() : Presenter<DetailState>() {
 
     override fun initialState(): DetailState = DetailState(isLoading = false, count = 0)
 
-    fun increment() = changeState {
+    fun increment() = setState {
         it.copy(count = it.count + 1)
     }
 }

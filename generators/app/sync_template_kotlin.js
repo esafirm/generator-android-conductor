@@ -4,8 +4,7 @@ const path = require('path');
 const rimraf = require('rimraf');
 const replace = require('replace');
 const ncp = require('ncp').ncp;
-const nodegit = require('nodegit');
-const clone = nodegit.Clone;
+const simpleGit = require('simple-git/promise');
 const mv = require('mv');
 
 const {replaceConfig, createReplacement} = require('./config/replace');
@@ -17,7 +16,7 @@ console.log('Running… ');
 
 rimraf.sync(tempDir);
 
-clone('https://github.com/esafirm/android-conductor-boilerplate.git', tempDir)
+simpleGit().clone('https://github.com/esafirm/android-conductor-boilerplate.git', tempDir)
   .then(function () {
     return clearTemplate().then(() => checkOutAndCopy());
   })

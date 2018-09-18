@@ -62,15 +62,15 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.1'
 
-    final conductorVersion = '2.1.4'
+    final conductorVersion = '2.1.5'
     implementation "com.bluelinelabs:conductor:$conductorVersion"
 
-    final conductorExtraVersion = '3.2.0'
+    final conductorExtraVersion = '3.4.1'
     implementation "com.github.esafirm.conductor-extra:conductor-extra:$conductorExtraVersion"
     implementation "com.github.esafirm.conductor-extra:conductor-extra-screen:$conductorExtraVersion"
 
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.8'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
 
     /* Arch */
     implementation "android.arch.core:runtime:1.1.1"
@@ -94,7 +94,7 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
 
-    implementation 'com.google.code.gson:gson:2.8.1'
+    implementation 'com.google.code.gson:gson:2.8.2'
 
     /* Logging */
     implementation 'com.jakewharton.timber:timber:4.5.1'
