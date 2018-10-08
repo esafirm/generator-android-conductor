@@ -11,9 +11,9 @@ module.exports = class extends Generator {
     this.props = {};
   }
   prompting() {
-    this.log(yosay(
-      'Welcome to ' + chalk.red('Kotlin Android Starter') + ' generator!'
-    ));
+    this.log(
+      yosay('Welcome to ' + chalk.red('Kotlin Android Starter') + ' generator!')
+    );
 
     const prompts = [
       {
@@ -37,7 +37,8 @@ module.exports = class extends Generator {
         message: 'What is the minimum Android SDK you wish to support?',
         store: true,
         default: 19 // Android 4.0 (Ice Cream Sandwich)
-      }];
+      }
+    ];
 
     return this.prompt(prompts).then(props => {
       this.props.appPackage = props.package;
@@ -61,7 +62,8 @@ module.exports = class extends Generator {
     mkdirp('app/src/test/kotlin/' + packageDir);
 
     const appPath = this.sourceRoot() + '/' + appFolder + '/';
-    const copyToSameLocation = filePath => this.fs.copy(appPath + filePath, filePath);
+    const copyToSameLocation = filePath =>
+      this.fs.copy(appPath + filePath, filePath);
     const copyTemplateToSameLocation = (filePath, props) => {
       this.fs.copyTpl(appPath + filePath, filePath, props);
     };
@@ -77,10 +79,12 @@ module.exports = class extends Generator {
 
     const copyDotFile = filePath => {
       const index = filePath.lastIndexOf('/') + 1;
-      const dest = filePath.substring(0, index) + `.${filePath.substring(filePath.lastIndexOf('/') + 1)}`;
+      const dest =
+        filePath.substring(0, index) +
+        `.${filePath.substring(filePath.lastIndexOf('/') + 1)}`;
 
       console.log('dest', dest);
-      console.log('orgiin', (appPath + filePath));
+      console.log('orgiin', appPath + filePath);
 
       this.fs.copy(appPath + filePath, dest);
     };
@@ -110,13 +114,23 @@ module.exports = class extends Generator {
     copyTemplateToSameLocation('app/build.gradle', this.props);
 
     /* Main */
-    copyTemplateToSameLocation('app/src/main/res/values/strings.xml', this.props);
+    copyTemplateToSameLocation(
+      'app/src/main/res/values/strings.xml',
+      this.props
+    );
     copyTemplateToSameLocation('app/src/main/AndroidManifest.xml', this.props);
     copyTemplateToSameLocation('app/src/main/res/layout', this.props);
-    this.fs.copyTpl(appPath + `app/src/main/kotlin/${currentPath}`, 'app/src/main/kotlin/' + packageDir, this.props);
+    this.fs.copyTpl(
+      appPath + `app/src/main/kotlin/${currentPath}`,
+      'app/src/main/kotlin/' + packageDir,
+      this.props
+    );
 
     /* Test */
-    this.fs.copyTpl(appPath + `app/src/test/kotlin/${currentPath}`, 'app/src/test/kotlin/' + packageDir, this.props);
+    this.fs.copyTpl(
+      appPath + `app/src/test/kotlin/${currentPath}`,
+      'app/src/test/kotlin/' + packageDir,
+      this.props
+    );
   }
 };
-

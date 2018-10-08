@@ -7,7 +7,8 @@ describe('generator-android-kotlin-conductor', function () {
   this.timeout(15000);
 
   before(function () {
-    return helpers.run(path.join(__dirname, '../generators/app'))
+    return helpers
+      .run(path.join(__dirname, '../generators/app'))
       .withPrompts({
         name: 'SampleApp',
         package: 'com.sample.mvp',
