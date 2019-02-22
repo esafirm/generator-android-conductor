@@ -65,7 +65,7 @@ dependencies {
     final conductorVersion = '2.1.5'
     implementation "com.bluelinelabs:conductor:$conductorVersion"
 
-    final conductorExtraVersion = '3.4.4'
+    final conductorExtraVersion = '4.0.1'
     implementation "com.github.esafirm.conductor-extra:conductor-extra:$conductorExtraVersion"
     implementation "com.github.esafirm.conductor-extra:conductor-extra-screen:$conductorExtraVersion"
 

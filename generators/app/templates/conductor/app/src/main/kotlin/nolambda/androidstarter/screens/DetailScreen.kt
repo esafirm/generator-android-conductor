@@ -27,12 +27,13 @@ class DetailScreen : AbsStatefulScreen<DetailState, DetailPresenter>() {
     @Inject lateinit var presenter: DetailPresenter
 
     init {
-        screenView = xml(R.layout.controller_detail)
         onInit = {
             component.inject(this)
-            screenPresenter = { presenter }
         }
     }
+
+    override fun createView() = xml(R.layout.controller_detail)
+    override fun createPresenter() = presenter
 
     override fun render(presenter: DetailPresenter, state: DetailState) {
         main_txt_yeah.text = "Counter: ${state.count}"

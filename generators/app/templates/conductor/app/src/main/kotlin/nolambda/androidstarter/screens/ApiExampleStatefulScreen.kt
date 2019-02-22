@@ -13,9 +13,9 @@ class ApiExampleStatefulScreen : AbsScreen() {
 
     init {
         onInit = { component.inject(this) }
-        screenView = xml(R.layout.controller_main)
     }
 
+    override fun createView() = xml(R.layout.controller_main)
 
     override fun render() {
         main_txt_hello.setOnClickListener {
