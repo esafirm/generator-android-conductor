@@ -1,9 +1,11 @@
 package <%= appPackage %>.screens
 
+import android.view.View
 import kotlinx.android.synthetic.main.controller_detail.*
 import <%= appPackage %>.R
 import <%= appPackage %>.commons.AbsStatefulScreen
 import <%= appPackage %>.navigator.AppNavigator
+import <%= appPackage %>.network.ApiService
 import nolambda.screen.Presenter
 import javax.inject.Inject
 
@@ -12,9 +14,19 @@ data class DetailState(
         val count: Int = 0
 )
 
-class DetailPresenter @Inject constructor() : Presenter<DetailState>() {
+class DetailPresenter @Inject constructor(private val apiService: ApiService) : Presenter<DetailState>() {
 
     override fun initialState(): DetailState = DetailState(isLoading = false, count = 0)
+
+    override fun initPresenter() {
+        setLoading(true)
+    }
+
+    fun setLoading(isLoading: Boolean) {
+        setState {
+            it.copy(isLoading = isLoading)
+        }
+    }
 
     fun increment() = setState {
         it.copy(count = it.count + 1)
@@ -36,6 +48,10 @@ class DetailScreen : AbsStatefulScreen<DetailState, DetailPresenter>() {
     override fun createPresenter() = presenter
 
     override fun render(presenter: DetailPresenter, state: DetailState) {
+        main_progress.visibility = when (state.isLoading) {
+            true -> View.VISIBLE
+            false -> View.GONE
+        }
         main_txt_yeah.text = "Counter: ${state.count}"
         main_btn_add.setOnClickListener { presenter.increment() }
     }

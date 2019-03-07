@@ -65,7 +65,7 @@ dependencies {
     final conductorVersion = '2.1.5'
     implementation "com.bluelinelabs:conductor:$conductorVersion"
 
-    final conductorExtraVersion = '4.0.1'
+    final conductorExtraVersion = '4.1.0'
     implementation "com.github.esafirm.conductor-extra:conductor-extra:$conductorExtraVersion"
     implementation "com.github.esafirm.conductor-extra:conductor-extra-screen:$conductorExtraVersion"
 
@@ -80,9 +80,6 @@ dependencies {
     final daggerVersion = rootProject.ext.dependencies.dagger
     implementation "com.google.dagger:dagger:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-
-    /* Butterknife */
-    kapt 'com.jakewharton:butterknife-compiler:8.6.0'
 
     /* Network */
     final okHttpVersion = '3.8.1'
