@@ -4,6 +4,7 @@ import com.esafirm.conductorextra.common.onEvent
 import kotlinx.android.synthetic.main.controller_main.*
 import <%= appPackage %>.R
 import <%= appPackage %>.commons.AbsScreen
+import <%= appPackage %>.commons.makeComponent
 import <%= appPackage %>.navigator.AppNavigator
 import javax.inject.Inject
 
@@ -13,7 +14,7 @@ class MainScreen : AbsScreen() {
 
     init {
         onEvent(onPostCreateView = { remover ->
-            component.inject(this)
+            makeComponent().inject(this)
             remover()
         })
     }

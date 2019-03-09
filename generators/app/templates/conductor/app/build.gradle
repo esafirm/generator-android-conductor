@@ -65,8 +65,7 @@ dependencies {
     final conductorVersion = '2.1.5'
     implementation "com.bluelinelabs:conductor:$conductorVersion"
 
-    final conductorExtraVersion = '4.1.0'
-    implementation "com.github.esafirm.conductor-extra:conductor-extra:$conductorExtraVersion"
+    final conductorExtraVersion = '4.1.1'
     implementation "com.github.esafirm.conductor-extra:conductor-extra-screen:$conductorExtraVersion"
 
     implementation 'io.reactivex.rxjava2:rxjava:2.1.9'

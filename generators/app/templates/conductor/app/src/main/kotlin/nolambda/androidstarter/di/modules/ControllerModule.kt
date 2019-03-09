@@ -1,11 +1,8 @@
 package <%= appPackage %>.di.modules
 
-import com.bluelinelabs.conductor.Controller
 import dagger.Module
-import dagger.Provides
+import <%= appPackage %>.screens.DetailModule
 
-@Module
-class ControllerModule(val controller: Controller) {
+@Module(includes = [DetailModule::class])
+class ControllerModule
 
-    @Provides fun provideController(): Controller = controller
-}

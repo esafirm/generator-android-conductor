@@ -4,6 +4,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.controller_main.*
 import <%= appPackage %>.R
 import <%= appPackage %>.commons.AbsScreen
+import <%= appPackage %>.commons.makeComponent
 import <%= appPackage %>.network.ApiService
 import javax.inject.Inject
 
@@ -12,7 +13,7 @@ class ApiExampleStatefulScreen : AbsScreen() {
     @Inject lateinit var apiService: ApiService
 
     init {
-        onInit = { component.inject(this) }
+        onInit = {  makeComponent().inject(this) }
     }
 
     override fun createView() = xml(R.layout.controller_main)
